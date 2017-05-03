@@ -3,9 +3,44 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Blank App</title>
+        <title>Shoot The Egg</title>
     </head>
     <body>
+
         <script type="text/javascript" src="cordova.js"></script>
+
+	    <style>
+		    body {
+			    padding: 0;
+			    margin: 0;
+			    background: black;
+			}
+	    </style>
+
+        <script type="text/javascript" src="js/phaser.min.js"></script>
+        <script type="text/javascript" src="js/preload.js"></script>
+        <script type="text/javascript" src="js/mainscreen.js"></script>
+        <script type="text/javascript" src="js/startgame.js"></script>
+        <script type="text/javascript" src="js/gameover.js"></script>
+        <script type="text/javascript" src="js/highscore.js"></script>
+        <script type="text/javascript" src="js/instructions.js"></script>
+
+        <script>
+        	function startApp(){
+
+        		//PHASER
+        		var game = new Phaser.Game(320, 480, Phaser.CANVAS, "game");
+                game.state.add('preload', preload);
+                game.state.add('mainscreen', mainscreen);
+                game.state.add('startgame', startgame);
+                game.state.add('gameover', gameover);
+                game.state.add('highscore', highscore);
+                game.state.add('instructions', instructions);
+        		game.state.start('preload');
+
+        	}
+        	document.addEventListener('deviceready', startApp, false);
+        </script>
+        
     </body>
 </html>

@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "io.cybertek.shoottheegg"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.cybertek.shoottheegg"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "io.cybertek.shoottheegg"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "io.cybertek.shoottheegg"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-extension": {
+            "PACKAGE_NAME": "io.cybertek.shoottheegg"
+        }
+    }
+}

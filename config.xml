@@ -2,11 +2,22 @@
 <widget id="io.cybertek.shoottheegg" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Shoot The Egg</name>
     <description>
-        A blank PhoneGap app.
+        Simple - Shoot the egg! Don't shoot anything else! Easy.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="support@cybertek.io" href="http://cybertek.io">
+        Cybertek Systems LLC
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <platform name="android">
+        <icon src="res/bigegg.png" />
+    </platform>
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="FadeSplashScreenDuration" value="0" />
+    <plugin name="cordova-plugin-admobpro" spec="~2.28.3" />
+    <plugin name="cordova-plugin-device" spec="~1.1.6" />
+    <plugin name="cordova-plugin-splashscreen" spec="~4.0.3" />
+    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0" />
 </widget>
