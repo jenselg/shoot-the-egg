@@ -13,13 +13,14 @@
     </feature>
     <name>Shoot The Egg</name>
     <description>
-        Simple - Shoot the egg! Don't shoot anything else!
+        Simple - Shoot the egg! Don't shoot anything else! Easy.
     </description>
     <author email="support@cybertek.io" href="http://cybertek.io">
         Cybertek Systems LLC
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <icon src="res/bigegg.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="webView" value="org.crosswalk.engine.XWalkWebViewEngine" />
     <preference name="xwalkVersion" value="23+" />

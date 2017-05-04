@@ -20,6 +20,14 @@ preload.prototype = {
 		this.game.load.spritesheet('bigegg','assets/bigegg.png', 1024, 1024);
 		this.game.load.spritesheet('cookedegg', 'assets/cookedegg.png', 256, 256);
 
+
+		// SOUND ASSETS
+		this.game.load.audio('duckcry', 'assets/duckcry.m4a');
+		this.game.load.audio('eggcrack', 'assets/eggcrack.m4a');
+		this.game.load.audio('fire', 'assets/fire.m4a');
+		this.game.load.audio('reload', 'assets/reload.m4a');
+		this.game.load.audio('splat', 'assets/splat.m4a');
+
 		// FONT
 		this.game.load.bitmapFont('04b', 'assets/04b-hd.png', 'assets/04b-hd.xml');
 		this.game.load.bitmapFont('pixelf', 'assets/font.png', 'assets/font.xml');

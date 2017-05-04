@@ -59,6 +59,12 @@ mainscreen.prototype = {
         instructionsText.inputEnabled = true;
         instructionsText.events.onInputDown.add(this.instructions, this);
 
+        if(window.localStorage.getItem('sound') == 'on'){
+            soundText = "Sound ON"
+        } else if(window.localStorage.getItem('sound') == 'off'){
+            soundText = "Sound OFF"
+        }
+
         soundSwitchText = this.game.add.bitmapText(
         	this.game.world.centerX,
         	440,

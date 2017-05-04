@@ -18,9 +18,6 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-extension": {
-            "PACKAGE_NAME": "io.cybertek.shoottheegg"
-        },
         "cordova-plugin-admobpro": {
             "PACKAGE_NAME": "io.cybertek.shoottheegg"
         },
@@ -31,6 +28,9 @@
             "PACKAGE_NAME": "io.cybertek.shoottheegg"
         },
         "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "io.cybertek.shoottheegg"
+        },
+        "cordova-plugin-extension": {
             "PACKAGE_NAME": "io.cybertek.shoottheegg"
         }
     },
@@ -74,10 +74,10 @@
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-extension": "1.5.1",
         "cordova-plugin-admobpro": "2.28.3",
         "cordova-plugin-device": "1.1.6",
         "cordova-plugin-splashscreen": "4.0.3",
-        "cordova-plugin-crosswalk-webview": "2.3.0"
+        "cordova-plugin-crosswalk-webview": "2.3.0",
+        "cordova-plugin-extension": "1.5.1"
     }
 }

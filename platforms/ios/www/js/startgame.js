@@ -2,6 +2,28 @@ var startgame = function(game){}
 
 startgame.prototype = {
 
+    interstitialAd: function(){
+        AdMob.prepareInterstitial({
+            adId: admobid.interstitial, 
+            autoShow:false
+        });
+    },
+
+	init: function(){
+
+		ompWords = ['BOOM!', 'PING!', 'PONG!', 'BLAM!', 'WHACK!', 'PLINK!', 'TINK!', 'OOMPH!', 'GROAN!', 'QUACK!', 'OMELET!', 'MEOW!', 'PFFT!', 'PLONK!', 'ZAP!', 'PEW!', 'BLOOP!', 'BLOP!', 'QWOP!', 'POOP!', 'SKRR!', 'VROOM!', '!!!', 'RATATAT!', 'SPARTA!', '`MERICA!', 'SHOOT!', 'OW!', 'POW!', 'EGG!', 'HIT!', 'SELFIE!', 'NYAAA!', 'KAMIKAZE!', 'HADOUKEN!', 'RAMBO!', 'SCRAMBLED!']
+		duckcry = this.game.add.audio('duckcry');
+		eggcrack = this.game.add.audio('eggcrack');
+		fire = this.game.add.audio('fire');
+		reload = this.game.add.audio('reload');
+		splat = this.game.add.audio('splat');
+
+        if (AdMob && device.platform != 'browser') {
+            this.interstitialAd();
+        }
+
+	},
+
 	create: function(){
 
 		// CURRENT GAME SCORE
@@ -46,6 +68,18 @@ startgame.prototype = {
         );
         ammoText.anchor.setTo(0.5, 0.5);
 
+        // OMPTEXT
+
+        ompText = this.game.add.bitmapText(
+        	this.game.world.centerX,
+        	220,
+        	'pixelf',
+        	"",
+        	45
+        );
+        ompText.anchor.setTo(0.5, 0.5);
+
+
 		// DUCK
 		duck = this.game.add.sprite(16, 32, 'duck');
 		duck.inputEnabled = true;
@@ -53,7 +87,7 @@ startgame.prototype = {
 		this.game.physics.arcade.enable(duck);
 		duck.animations.add('fly');
 		duck.animations.play('fly', 15, true);
-		duck.body.velocity.x = 200; // Initial duck movement
+		duck.body.velocity.x = 120; // Initial duck movement
 
 		// GUN
 		gun = this.game.add.sprite(this.game.world.centerX, this.game.world.height - 48, 'gun');
@@ -108,7 +142,7 @@ startgame.prototype = {
 				320, 
 				Math.floor(Math.random() * (160 - 32 + 1)) + 32
 				);
-			duck.body.velocity.x = -200;
+			duck.body.velocity.x = -120;
 		} else if (Math.round(duckPosition.x) < 0) {
 			duck.kill();
 			duck.scale.x *= -1;
@@ -116,19 +150,19 @@ startgame.prototype = {
 				0, 
 				Math.floor(Math.random() * (160 - 32 + 1)) + 32
 				);
-			duck.body.velocity.x = 200;
+			duck.body.velocity.x = 120;
 		}
 
 		// DROP EGG
 		if(((Math.random() * (99 - 2 + 1)) + 2) > difficulty && ((Math.random() * (99 - 2 + 1)) + 2) > difficulty) {
 			var egg = eggs.create(duckPosition.x, duckPosition.y + 40, 'egg');
-			egg.body.gravity.y = ((Math.random() * (100 - 50 + 1)) + 50);
-			egg.body.velocity.x = duck.body.velocity.x - 150;
+			egg.body.gravity.y = ((Math.random() * (70 - 30 + 1)) + 30);
+			egg.body.velocity.x = ((Math.random() * (60 - 10 + 1)) + 10);
 			egg.anchor.set(0.5);
 			egg.animations.add('crack');
 			egg.inputEnabled = true;
 			egg.body.collideWorldBounds = true;
-			egg.body.bounce.setTo(0.9, 0.9);
+			egg.body.bounce.setTo(0.5, 0.5);
 		}
 
 		// EGG ITERATOR
@@ -155,15 +189,20 @@ startgame.prototype = {
 
 		// COLLISIONS CHECK
 		if(this.game.physics.arcade.collide(eggs, grass)){
+			if(window.localStorage.getItem('sound') == 'on'){
+				splat.play();
+			}
 			this.game.state.start('gameover');
 		}
 
 	},
 
 	reload: function () {
+			if(window.localStorage.getItem('sound') == 'on'){
+				reload.play();
+			}
 		ammo = 2;
 		reloadText.setText("");
-		console.log("reloaded!");
 		shell1.reset(this.game.world.width - 75, this.game.world.height - 24);
 		shell2.reset(this.game.world.width - 55, this.game.world.height - 24);
 	},
@@ -180,21 +219,41 @@ startgame.prototype = {
 				fireSwitch = true;
 			}
 
+			if(window.localStorage.getItem('sound') == 'on'){
+				eggcrack.play();
+			}
+
+
+			ompWord = ompWords[Math.floor(Math.random() * ompWords.length)];
+			ompText.setText(ompWord);
+
+
+			this.game.time.events.add(Phaser.Timer.SECOND * 1, function(){
+				ompText.setText("");
+			}, this);
+
 			ammo--;
-			console.log("good shot! ammo left: " + ammo);
-			eggInstance.animations.play('crack', 70, false, true);
-			difficulty -= 0.0001;
+
+			eggInstance.animations.play('crack', 80, false, true);
+			difficulty -= 0.1;
 			score++;
 			scoreCountText.setText(score);
-			console.log(difficulty);
+
 		}
 
 	},
 
 	shotDuck: function(){
-		console.log("duck shot!");
-		difficulty -= 10;
-		console.log(difficulty);
+
+		if(ammo > 0){
+			if(window.localStorage.getItem('sound') == 'on'){
+				duckcry.play();
+			}
+
+		difficulty -= 2;
+		ammo--;
+
+		}
 	},
 
 	antiSpam: function () {
@@ -208,11 +267,12 @@ startgame.prototype = {
 				gun.animations.play('shoot-right', 10, false);
 				fireSwitch = true;
 			}
-
+			if(window.localStorage.getItem('sound') == 'on'){
+				fire.play();
+			}
 			ammo--;
-			console.log("spam shot! ammo left: " + ammo);
-			difficulty -= 0.5;
-			console.log(difficulty);
+			difficulty -= 1;
+
 		}
 
 	}

@@ -5,16 +5,16 @@ highscore.prototype = {
 	create: function(){
 
 		this.game.add.sprite(0, 0, 'bluesky');
-                shell1 = this.game.add.sprite(this.game.world.centerX-32, 64, 'shell');
+                shell1 = this.game.add.sprite(this.game.world.centerX-32, 108, 'shell');
                 shell1.anchor.setTo(0.5, 0.5);
-                shell2 = this.game.add.sprite(this.game.world.centerX, 64, 'shell');
+                shell2 = this.game.add.sprite(this.game.world.centerX, 108, 'shell');
                 shell2.anchor.setTo(0.5, 0.5);
-                shell3 = this.game.add.sprite(this.game.world.centerX+32, 64, 'shell');
+                shell3 = this.game.add.sprite(this.game.world.centerX+32, 108, 'shell');
                 shell3.anchor.setTo(0.5, 0.5);
 
         highScoreHeaderText = this.game.add.bitmapText(
         	this.game.world.centerX,
-        	128,
+        	180,
         	'pixelf-gold',
         	'HIGH SCORE',
         	40
@@ -25,7 +25,7 @@ highscore.prototype = {
 	var score = window.localStorage.getItem('highscore')
         highScoreText = this.game.add.bitmapText(
         	this.game.world.centerX,
-        	215,
+        	250,
         	'pixelf',
         	score,
         	80
@@ -34,7 +34,7 @@ highscore.prototype = {
 
         playText = this.game.add.bitmapText(
         	this.game.world.centerX,
-        	310,
+        	320,
         	'pixelf-gold',
         	'PLAY!',
         	50
