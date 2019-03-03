@@ -1,14 +1,1 @@
-# A Blank PhoneGap App
-
-## Usage
-
-### PhoneGap CLI
-
-    $ phonegap create my-app --template blank
-
-### Desktop
-
-In your browser, open the file:
-
-    /www/index.html
-
+2D retro game based on Cordova and Phaser.js. Gameplay similar to the classic Duck Hunt.
